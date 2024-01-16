@@ -59,4 +59,4 @@ jobs:
         push: true
         tags: ghcr.io/${{ env.REPO }}/my-fullstack-project:${{ github.sha }}
         labels: ${{ steps.docker_meta.outputs.labels }}
-        file: ./Dockerfile
+        file: cloud-core/Dockerfile

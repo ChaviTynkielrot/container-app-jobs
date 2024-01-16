@@ -1,0 +1,6 @@
+pytest
+black
+azure-keyvault-secrets
+azure-identity
+requests
+pytz
