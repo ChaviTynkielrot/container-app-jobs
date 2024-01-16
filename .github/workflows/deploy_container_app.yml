@@ -22,15 +22,12 @@ jobs:
         # inlineScript: |
           
         #   echo "Installing containerapp extension"
-        #   az extension add --source https://workerappscliextension.blob.core.windows.net/azure-cli-extension/containerapp-0.2.0-py2.py3-none-any.whl --yes
+          az extension add --source https://workerappscliextension.blob.core.windows.net/azure-cli-extension/containerapp-0.2.0-py2.py3-none-any.whl --yes
           # echo "Starting Deploying"
         #   az containerapp update -n azure-ad -g tets -i ghcr.io/my-fullstack-project:${{ github.sha }} --registry-login-server ghcr.io --registry-username ${{ secrets.REGISTRY_USERNAME }} --registry-password ${{ secrets.REGISTRY_PASSWORD }} --debug
 
-          acrName: ghcr.io
-          containerAppName: my-container-app
-          resourceGroup: my-rg
-          imageToDeploy: ghcr.io/my-fullstack-project:${{ github.sha }
-  
+          az containerapp up --name azure-ad --image ghcr.io/my-fullstack-project:${{ github.sha }} --ingress external
+
 
 
 # registryId=$(az acr show --name <registry-name> --query id --output tsv)
