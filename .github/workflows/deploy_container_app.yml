@@ -16,6 +16,19 @@ jobs:
       with:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
+
+
+     - name: 🔄 downcase REPO
+      uses: ASzc/change-string-case-action@v1
+      id: downcase
+      with:
+          string: ${{ github.repository }}
+
+    - name: ♻️ Set correct environment
+      run: |
+        REPO=${{ steps.downcase.outputs.lowercase }}
+        echo "REPO=$REPO" >> "$GITHUB_ENV"
+
     # - name: 'Deploy Container App'
     #   uses: Azure/cli@v1
     #   with:
