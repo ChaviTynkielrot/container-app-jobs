@@ -1,3 +1,3 @@
 FROM python
-COPY requirements.txt requirements.txt
+COPY . requirements.txt
 RUN pip install -r requirements.txt
