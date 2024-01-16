@@ -50,7 +50,6 @@ jobs:
         containerAppName: try
         resourceGroup: NetworkWatcherRG
         imageToDeploy: ghcr.io/${{ env.REPO }}/my-fullstack-project:${{ github.sha }}
-
         echo " aaaaaaaaaaaaaaaaaaaaaaa   ${{ env.REPO }}""
           
 
