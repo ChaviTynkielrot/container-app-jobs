@@ -26,11 +26,11 @@ jobs:
           # echo "Starting Deploying"
         #   az containerapp update -n azure-ad -g tets -i ghcr.io/my-fullstack-project:${{ github.sha }} --registry-login-server ghcr.io --registry-username ${{ secrets.REGISTRY_USERNAME }} --registry-password ${{ secrets.REGISTRY_PASSWORD }} --debug
 
-        acrName: ghcr.io
-        containerAppName: my-container-app
-        resourceGroup: my-rg
-        imageToDeploy: ghcr.io/my-fullstack-project:${{ github.sha }
-
+          acrName: ghcr.io
+          containerAppName: my-container-app
+          resourceGroup: my-rg
+          imageToDeploy: ghcr.io/my-fullstack-project:${{ github.sha }
+  
 
 
 # registryId=$(az acr show --name <registry-name> --query id --output tsv)
