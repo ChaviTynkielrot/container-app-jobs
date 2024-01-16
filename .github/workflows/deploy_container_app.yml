@@ -24,4 +24,10 @@ jobs:
           echo "Installing containerapp extension"
           az extension add --source https://workerappscliextension.blob.core.windows.net/azure-cli-extension/containerapp-0.2.0-py2.py3-none-any.whl --yes
           echo "Starting Deploying"
-          az containerapp update -n azure-ad -g tets -i ghcr.azurecr.io/bookstoreapi:${{ github.sha }} --registry-login-server ghcr.azurecr.io --registry-username  ${{ secrets.REGISTRY_USERNAME }} --registry-password ${{ secrets.REGISTRY_PASSWORD }} --debug
+          az containerapp update -n azure-ad -g tets -i ghcr.io/bookstoreapi:${{ github.sha }} --registry-login-server ghcr.io --registry-username  ${{ github.actor }} --registry-password ${{ secrets.GITHUB_TOKEN }} --debug
+
+
+
+# registryId=$(az acr show --name <registry-name> --query id --output tsv)
+# az role assignment create --assignee <ClientId> --scope $registryId --role AcrPush
+# az role assignment create --assignee <ClientId> --scope $registryId --role AcrPull
