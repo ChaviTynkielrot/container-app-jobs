@@ -32,8 +32,8 @@ jobs:
       uses: azure/container-apps-deploy-action@v2
       with:
         registryUrl: ghcr.io
-        registryUsername: ${{ secrets.CLIENT_ID }}
-        registryPassword: ${{ secrets.CLIENT_SECRET }}
+        registryUsername: ${{ github.actor }}
+        registryPassword: ${{ secrets.GITHUB_TOKEN }}
         containerAppName: try
         resourceGroup: NetworkWatcherRG
         imageToDeploy: ghcr.io/${{ env.REPO }}/my-fullstack-project:${{ github.sha }}
