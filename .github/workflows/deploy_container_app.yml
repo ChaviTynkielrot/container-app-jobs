@@ -39,7 +39,8 @@ jobs:
     #       echo "Starting Deploying"
     #       az containerapp update -n try -g NetworkWatcherRG -i ghcr.io/${{ env.REPO }}/my-fullstack-project:${{ github.sha }} --registry-login-server ghcr.io --registry-username ${{ secrets.CLIENT_ID }} --registry-password ${{ secrets.CLIENT_SECRET }} --debug
 
-
+    - name: echo
+      run:  echo "aaaaaaaaaaaaaaaaaaaaaaa   ${{ env.REPO }}"
 
     - name: Deploy Container App
       uses: azure/container-apps-deploy-action@v2
@@ -50,10 +51,6 @@ jobs:
         containerAppName: try
         resourceGroup: NetworkWatcherRG
         imageToDeploy: ghcr.io/${{ env.REPO }}/my-fullstack-project:${{ github.sha }}
-
-        inlineScript: |
-          echo "aaaaaaaaaaaaaaaaaaaaaaa   ${{ env.REPO }}"
-          
 
 
 
