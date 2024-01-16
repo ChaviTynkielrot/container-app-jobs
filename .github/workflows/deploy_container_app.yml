@@ -52,7 +52,7 @@ jobs:
         imageToDeploy: ghcr.io/${{ env.REPO }}/my-fullstack-project:${{ github.sha }}
 
         inlineScript: |
-          echo " aaaaaaaaaaaaaaaaaaaaaaa   ${{ env.REPO }}""
+          echo "aaaaaaaaaaaaaaaaaaaaaaa   ${{ env.REPO }}"
           
 
 
