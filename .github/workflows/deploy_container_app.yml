@@ -29,14 +29,14 @@ jobs:
 
 
     - name: Deploy Container App
-    uses: azure/container-apps-deploy-action@v2
-    with:
-      registryUrl: ghcr.io
-      registryUsername: ${{ github.actor }}
-      registryPassword: ${{ secrets.GITHUB_TOKEN }}
-      containerAppName: try
-      resourceGroup: NetworkWatcherRG
-      imageToDeploy: ghcr.io/my-fullstack-project:${{ github.sha }}
+      uses: azure/container-apps-deploy-action@v2
+      with:
+        registryUrl: ghcr.io
+        registryUsername: ${{ github.actor }}
+        registryPassword: ${{ secrets.GITHUB_TOKEN }}
+        containerAppName: try
+        resourceGroup: NetworkWatcherRG
+        imageToDeploy: ghcr.io/my-fullstack-project:${{ github.sha }}
           
 
 
