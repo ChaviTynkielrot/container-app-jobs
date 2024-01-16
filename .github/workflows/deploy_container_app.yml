@@ -20,9 +20,7 @@ jobs:
       uses: Azure/cli@v1
       with:
         inlineScript: |
-          registryId=$(az acr show --name <registry-name> --query id --output tsv)
-          az role assignment create --assignee <ClientId> --scope $registryId --role AcrPush
-          az role assignment create --assignee <ClientId> --scope $registryId --role AcrPull
+          
           echo "Installing containerapp extension"
           az extension add --source https://workerappscliextension.blob.core.windows.net/azure-cli-extension/containerapp-0.2.0-py2.py3-none-any.whl --yes
           echo "Starting Deploying"
