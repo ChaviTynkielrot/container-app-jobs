@@ -52,7 +52,8 @@ jobs:
         registryPassword: ${{ secrets.GITHUB_TOKEN }}
         containerAppName: try
         resourceGroup: NetworkWatcherRG
-        imageToDeploy: ghcr.io/${{ env.REPO }}/my-fullstack-project:${{ github.sha }}
+        imageToDeploy: ghcr.io/${{ env.REPO }}/my-fullstack-project:2e3669879382f1cdae49c51834d088ccaec6a504
+        # imageToDeploy: ghcr.io/${{ env.REPO }}/my-fullstack-project:${{ github.sha }}
 
 
 
