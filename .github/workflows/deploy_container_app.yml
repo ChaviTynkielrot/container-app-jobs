@@ -17,6 +17,7 @@ jobs:
         creds: ${{ secrets.AZURE_CREDENTIALS }}
 
 # ------------------------------------------------------------
+
 # REPO
     - name: 🔄 downcase REPO
       uses: ASzc/change-string-case-action@v1
@@ -26,8 +27,6 @@ jobs:
 
     - name: ♻️ Set correct environment
       run: |
-        TAG=${{ steps.get_release.outputs.tag_name }}
-        echo "TAG=$TAG" >> "$GITHUB_ENV"
         REPO=${{ steps.downcase.outputs.lowercase }}
         echo "REPO=$REPO" >> "$GITHUB_ENV"
 
@@ -54,7 +53,7 @@ jobs:
         registryPassword: ${{ secrets.GITHUB_TOKEN }}
         containerAppName: try
         resourceGroup: NetworkWatcherRG
-        imageToDeploy: ghcr.io/${{ env.REPO }}/my-fullstack-project:${{ env.TAG }}
+        imageToDeploy: ghcr.io/${{ env.REPO }}/my-fullstack-project
         # imageToDeploy: ghcr.io/${{ env.REPO }}/my-fullstack-project:${{ github.sha }}
 
 

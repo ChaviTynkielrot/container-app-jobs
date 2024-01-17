@@ -23,13 +23,13 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: 🔖 Get release tag name
-      id: get_release
-      uses: cardinalby/git-get-release-action@v1
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
-      with:
-        latest: true
+    # - name: 🔖 Get release tag name
+    #   id: get_release
+    #   uses: cardinalby/git-get-release-action@v1
+    #   env:
+    #     GITHUB_TOKEN: ${{ github.token }}
+    #   with:
+    #     latest: true
 
 # REPO
     - name: 🔄 downcase REPO
@@ -40,8 +40,6 @@ jobs:
 
     - name: ♻️ Set correct environment
       run: |
-        TAG=${{ steps.get_release.outputs.tag_name }}
-        echo "TAG=$TAG" >> "$GITHUB_ENV"
         REPO=${{ steps.downcase.outputs.lowercase }}
         echo "REPO=$REPO" >> "$GITHUB_ENV"
 
@@ -60,6 +58,6 @@ jobs:
       with:
         context: ./cloud-core
         push: true
-        tags: ghcr.io/${{ env.REPO }}/my-fullstack-project:${{ github.sha }}
+        tags: ghcr.io/${{ env.REPO }}/my-fullstack-project
         labels: ${{ steps.docker_meta.outputs.labels }}
         file: ./cloud-core/Dockerfile
