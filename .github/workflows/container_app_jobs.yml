@@ -60,6 +60,6 @@ jobs:
       with:
         context: ./cloud-core
         push: true
-        tags: ghcr.io/${{ env.REPO }}/my-fullstack-project:${{ env.TAG }}
+        tags: ghcr.io/${{ env.REPO }}/my-fullstack-project:${{ github.sha }}
         labels: ${{ steps.docker_meta.outputs.labels }}
         file: ./cloud-core/Dockerfile
