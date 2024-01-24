@@ -6,12 +6,10 @@ on:
 jobs:
   publish:
     runs-on: 'ubuntu-latest'  
-    # environment: production
     steps:
     - name: 📂 Checkout repository
       uses: actions/checkout@v4
-      # with:
-      #   fetch-depth: 0
+
 
     - name: 🛠️ Set up Docker Buildx
       uses: docker/setup-buildx-action@v2
@@ -23,15 +21,6 @@ jobs:
         username: ${{ github.actor }}
         password: ${{ secrets.GITHUB_TOKEN }}
 
-    # - name: 🔖 Get release tag name
-    #   id: get_release
-    #   uses: cardinalby/git-get-release-action@v1
-    #   env:
-    #     GITHUB_TOKEN: ${{ github.token }}
-    #   with:
-    #     latest: true
-
-# REPO
     - name: 🔄 downcase REPO
       uses: ASzc/change-string-case-action@v1
       id: downcase
@@ -42,16 +31,6 @@ jobs:
       run: |
         REPO=${{ steps.downcase.outputs.lowercase }}
         echo "REPO=$REPO" >> "$GITHUB_ENV"
-
-    # - name: 🐳 Docker metadata
-    #   id: docker_meta
-    #   uses: docker/metadata-action@v5
-    #   with:
-    #     images: ghcr.io/${{ env.REPO }}-${{ matrix.directory}}
-    #     tags: |
-    #       type=semver,pattern={{major}}.{{minor}}.{{patch}},value=${{ env.TAG }}
-    #       type=semver,pattern={{major}}.{{minor}},value=${{ env.TAG }}
-    #       type=semver,pattern={{major}},value=${{ env.TAG }}
  
     - name: 🏗️ Build and push container image to registry
       uses: docker/build-push-action@v3
@@ -61,3 +40,12 @@ jobs:
         tags: ghcr.io/${{ env.REPO }}/my-fullstack-project
         labels: ${{ steps.docker_meta.outputs.labels }}
         file: ./cloud-core/Dockerfile
+
+      
+    - name: 🚀 Deploy to Azure Functions
+      id: deploy-to-functions
+      uses: Azure/functions-container-action@v1
+      with:
+        app-name: user-disable-automation
+        image: 'ghcr.io/${{ env.REPO }}/my-fullstack-project'
+        # slot-name: 'development'
