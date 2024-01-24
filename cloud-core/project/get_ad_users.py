@@ -1,6 +1,5 @@
 import requests
 
-
 def retrieving_list_of_users_by_department_name(access_token,department,expiration_date):
     select,filter,top =setting_up_data_for_receiving_users(department,expiration_date)
     users = get_users(access_token,select,filter,top)
@@ -10,7 +9,7 @@ def setting_up_data_for_receiving_users(department,expiration_date):
     select=f'id,{expiration_date}'
     filter=f"Department in ('{department}') and accountEnabled+eq+true"
     top=999
-    return select,filter,top 
+    return select,filter,top
 
 def get_users(access_token,select,filter,top):
     try:

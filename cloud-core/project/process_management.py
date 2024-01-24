@@ -1,29 +1,32 @@
 from project.date_check import is_past_expiration_by
 from project.update_user_attribute import update_user_attribute
 from project.get_ad_users import retrieving_list_of_users_by_department_name
+from project.config_variables import keyvault_uri, tenant_id ,client_id, client_secret ,application_id
 from azure.keyvault.secrets import SecretClient
 from azure.identity import DefaultAzureCredential
 import requests
 import datetime
 
-def inspection_process_management(kv_uri,department,days):
-    tenant_id,client_id,client_secret,application_id=get_data_from_key_vault_secret(kv_uri)
-    access_token=get_access_token(tenant_id, client_id, client_secret)
+def inspection_process_management(department,days):
+    secret_client = get_secret_client(keyvault_uri)
+    tenant_id_value = kv_get_value_secret(secret_client, tenant_id)
+    client_id_value = kv_get_value_secret(secret_client, client_id)
+    client_secret_value = kv_get_value_secret(secret_client,client_secret)
+    application_id_value = kv_get_value_secret(secret_client,application_id)
+    access_token = get_access_token(tenant_id_value, client_id_value, client_secret_value)
     if access_token:
         try:
-            sending_users_for_testing(access_token,department,days,application_id) 
+            sending_users_for_testing(access_token,department,days,application_id_value)
         except Exception as e:
-            return "sending_users_for_testing does not succeed"         
+            return "sending_users_for_testing does not succeed"
     else:
         return "Failed to obtain access token"
-    
-def get_data_from_key_vault_secret(KVUri):
-    client = SecretClient(vault_url=KVUri, credential=DefaultAzureCredential())
-    tenant_id=client.get_secret('TENANT_ID').value
-    client_id=client.get_secret('CLIENT_ID').value
-    client_secret=client.get_secret('CLIENT_SECRET').value
-    application_id=client.get_secret('APPLICATION_ID').value
-    return tenant_id,client_id,client_secret,application_id
+
+def get_secret_client(KVUri):
+    return SecretClient(vault_url=KVUri, credential=DefaultAzureCredential())
+
+def kv_get_value_secret(secretClient, name_secret):
+    return secretClient.get_secret(name_secret).value
 
 def get_access_token(tenant_id, client_id, client_secret):
     try:
@@ -44,11 +47,12 @@ def get_access_token(tenant_id, client_id, client_secret):
 def sending_users_for_testing(access_token,department,days,application_id):
     users=retrieving_list_of_users_by_department_name(access_token,department,'extension_'+application_id+'_expiration_date')
     for user in users:
+        user['id']="3fa2d3ea-d839-4855-aafa-8eb765e58fe4"
         user_expiration_date_check(access_token,user,days,application_id)
-    
+
 def user_expiration_date_check(access_token,user,days,application_id):
     attribute_name = f"extension_{application_id}_expiration_date"
     if(attribute_name in user):
         is_past_expiration_by(days, datetime.datetime.fromisoformat(user[attribute_name]), access_token,user['id'],attribute_name)
     else:
-        update_user_attribute(access_token, user['id'],attribute_name, datetime.date.today().isoformat()) 
+        update_user_attribute(access_token, user['id'],attribute_name, datetime.date.today().isoformat())
