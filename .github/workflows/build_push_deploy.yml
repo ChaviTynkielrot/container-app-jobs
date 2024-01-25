@@ -1,4 +1,4 @@
-name: Build and deploy container app to Azure Function App
+name: Build push and deploy container app to Azure Function App
 
 on:
   workflow_dispatch: 
