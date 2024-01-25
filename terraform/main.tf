@@ -122,7 +122,7 @@ data "azurerm_client_config" "current_client" {}
 # }
 
 resource "azurerm_service_plan" "service_plan" {
-  name                = var.app_service_plan_name[count.index]
+  name                = var.app_service_plan_name
   resource_group_name = data.azurerm_storage_account.vnet_storage_account.resource_group_name
   location            = data.azurerm_storage_account.vnet_storage_account.location
   os_type             = "Linux"
