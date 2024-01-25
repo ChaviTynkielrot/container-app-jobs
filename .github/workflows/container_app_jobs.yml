@@ -50,6 +50,6 @@ jobs:
       id: deploy-to-functions
       uses: Azure/functions-container-action@v1
       with:
-        app-name: user-disable-automation
+        app-name: func-user-disable-try
         image: 'ghcr.io/${{ env.REPO }}/my-fullstack-project'
         # slot-name: 'development'
