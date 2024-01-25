@@ -5,15 +5,16 @@ variable subscription_id {
 
 variable WORKSPACE_ID {
   type        = string
+  default = "fa9e707a-28c1-4528-b7b2-54d03360d4c9"
 }
 
-variable HTTP_TRIGGER_URL {
-  type        = string
-}
+# variable HTTP_TRIGGER_URL {
+#   type        = string
+# }
 
-variable MAIN_MANAGER {
-  type        = string
-}
+# variable MAIN_MANAGER {
+#   type        = string
+# }
 
 # end secrets
 variable rg_name {
