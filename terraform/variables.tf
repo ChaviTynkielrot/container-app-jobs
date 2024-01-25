@@ -3,10 +3,9 @@ variable subscription_id {
   type        = string
 }
 
-variable WORKSPACE_ID {
-  type        = string
-  default = "fa9e707a-28c1-4528-b7b2-54d03360d4c9"
-}
+# variable WORKSPACE_ID {
+#   type        = string
+# }
 
 # variable HTTP_TRIGGER_URL {
 #   type        = string
