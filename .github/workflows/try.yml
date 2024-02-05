@@ -76,5 +76,5 @@ jobs:
       id: deploy-to-functions
       uses: Azure/functions-container-action@v1
       with:
-        app-name: func-user-disable
+        app-name: users-automation-project
         image: 'ghcr.io/${{ env.REPO }}/users-automation-project'
