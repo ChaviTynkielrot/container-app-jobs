@@ -116,7 +116,7 @@ variable app_service_plan_name{
 
 variable function_app_name {
   type        = string
-  default = "users-automation-project"
+  default = "func-user-disable"
 }
 
 variable DOCKER_REGISTRY_SERVER_PASSWORD {
