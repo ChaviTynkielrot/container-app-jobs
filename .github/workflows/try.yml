@@ -34,6 +34,7 @@ jobs:
     #   with:
     #     latest: true
     - name: 🔖 Set fake release tag name
+      id: get_release
       run: echo "FAKE_RELEASE_TAG=v0.0.1" >> "$GITHUB_ENV"
 
 
@@ -67,7 +68,7 @@ jobs:
       with:
         context: ./cloud-core
         push: true
-        tags: ghcr.io/${{ env.REPO }}/users-automation-project
+        tags: ghcr.io/${{ env.REPO }}/users-automation-project:${{ env.TAG }}
         labels: ${{ steps.docker_meta.outputs.labels }}
         file: ./cloud-core/Dockerfile
 
@@ -77,4 +78,4 @@ jobs:
       uses: Azure/functions-container-action@v1
       with:
         app-name: func-user-disable
-        image: 'ghcr.io/${{ env.REPO }}/users-automation-project'
+        image: 'ghcr.io/${{ env.REPO }}/users-automation-project:${{ env.TAG }}'
