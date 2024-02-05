@@ -45,7 +45,6 @@ jobs:
 
     - name: ♻️ Set correct environment
       run: |
-# TAG=${{ steps.get_release.outputs.tag_name }}
         TAG=${{ env.FAKE_RELEASE_TAG }}
         echo "TAG=$TAG" >> "$GITHUB_ENV"
         REPO=${{ steps.downcase.outputs.lowercase }}
@@ -79,3 +78,8 @@ jobs:
       with:
         app-name: func-user-disable
         image: 'ghcr.io/${{ env.REPO }}/users-automation-project:${{ env.TAG }}'
+
+
+#         TAG=${{ steps.get_release.outputs.tag_name }}
+# set correct envinronment
+# במקום מה שיש
