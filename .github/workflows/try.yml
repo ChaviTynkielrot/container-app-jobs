@@ -67,7 +67,7 @@ jobs:
       with:
         context: ./cloud-core
         push: true
-        tags: ghcr.io/${{ env.REPO }}/users-automation-project
+        tags: ghcr.io/${{ env.REPO }}/users-automation-project:${{ env.TAG }}
         labels: ${{ steps.docker_meta.outputs.labels }}
         file: ./cloud-core/Dockerfile
 
