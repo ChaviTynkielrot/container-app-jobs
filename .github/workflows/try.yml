@@ -1,4 +1,4 @@
-name: 🚀 build-push-deploy
+name: 🚀 build-push-deploy-try
 
 on:
   workflow_dispatch:
