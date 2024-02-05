@@ -34,7 +34,6 @@ jobs:
     #   with:
     #     latest: true
     - name: 🔖 Set fake release tag name
-      id: get_release
       run: echo "FAKE_RELEASE_TAG=v0.0.1" >> "$GITHUB_ENV"
 
 
@@ -46,7 +45,8 @@ jobs:
 
     - name: ♻️ Set correct environment
       run: |
-        TAG=${{ steps.get_release.outputs.tag_name }}
+# TAG=${{ steps.get_release.outputs.tag_name }}
+        TAG=${{ env.FAKE_RELEASE_TAG }}
         echo "TAG=$TAG" >> "$GITHUB_ENV"
         REPO=${{ steps.downcase.outputs.lowercase }}
         echo "REPO=$REPO" >> "$GITHUB_ENV"
