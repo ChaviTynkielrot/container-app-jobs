@@ -141,8 +141,11 @@ jobs:
           labels: ${{ steps.docker_meta.outputs.labels }}
           file: ./${{ matrix.directory }}/Dockerfile
 
-      - name: echo
+      - name: echo LAST_LEVEL
         run: echo "${{env.LAST_LEVEL}} hello hello"
+
+      - name: echo image
+        run: echo "ghcr.io/${{ github.repository }}/${{ env.LAST_LEVEL }}:${{ env.TAG }}"
 
       - name: 🚀 Deploy to Azure Functions
         id: deploy-to-functions
