@@ -141,6 +141,9 @@ jobs:
           labels: ${{ steps.docker_meta.outputs.labels }}
           file: ./${{ matrix.directory }}/Dockerfile
 
+      - name: echo
+        run: echo "${{env.LAST_LEVEL}}"
+
       - name: 🚀 Deploy to Azure Functions
         id: deploy-to-functions
         uses: Azure/functions-container-action@v1
