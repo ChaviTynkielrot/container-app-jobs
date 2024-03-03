@@ -12,6 +12,7 @@ on:
         options:
           - only_changed_directories
           - all
+          
 
 env:
   WORKING_DIR: services
