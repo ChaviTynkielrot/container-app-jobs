@@ -142,7 +142,7 @@ jobs:
           file: ./${{ matrix.directory }}/Dockerfile
 
       - name: echo
-        run: echo "${{env.LAST_LEVEL}} hello"
+        run: echo "${{env.LAST_LEVEL}} hello hello"
 
       - name: 🚀 Deploy to Azure Functions
         id: deploy-to-functions
