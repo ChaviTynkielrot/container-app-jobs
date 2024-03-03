@@ -71,6 +71,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
 
+      - name: print
+        run: echo ${{ env.DIRS }}
+
   build-and-deploy:
     runs-on: "ubuntu-latest"
     permissions:
