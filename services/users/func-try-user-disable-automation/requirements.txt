@@ -5,3 +5,4 @@ azure-keyvault-secrets
 azure-identity
 requests
 pytz
+azure-functions
