@@ -15,6 +15,6 @@ def test_function(req: func.HttpRequest) -> func.HttpResponse:
     
 
    
-    return func.HttpResponse('success!!!!!!!!!!', mimetype="application/json")
+    return func.HttpResponse('success!!!!!!!!!!', status_code=200)
     
    
