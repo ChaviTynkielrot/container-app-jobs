@@ -145,7 +145,7 @@ jobs:
         run: echo "${{env.LAST_LEVEL}} hello hello"
 
       - name: echo image
-        run: echo "ghcr.io/${{ github.repository }}/${{ env.LAST_LEVEL }}:${{ env.TAG }}"
+        run: echo "ghcr.io/${{ github.repository }}/${{ env.LAST_LEVEL }}:${{ env.TAG }} hello"
 
       - name: 🚀 Deploy to Azure Functions
         id: deploy-to-functions
